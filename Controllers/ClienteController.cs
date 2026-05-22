@@ -2,11 +2,13 @@ using LojaApi.Data;
 using LojaApi.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LojaApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class ClienteController : ControllerBase
     {
         private readonly AppDbContext _context;
@@ -18,6 +20,7 @@ namespace LojaApi.Controllers
 
         
         [HttpGet("Get_Cliente")]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<Cliente>>> Get()
         {
             return await _context.Clientes.ToListAsync();
@@ -25,6 +28,7 @@ namespace LojaApi.Controllers
 
         
         [HttpGet("Get_ClienteById")]
+        [Authorize]
         public async Task<ActionResult<Cliente>> GetById(int id)
         {
             var cliente = await _context.Clientes.FindAsync(id);
@@ -39,6 +43,7 @@ namespace LojaApi.Controllers
 
        
         [HttpPost("Create_Cliete")]
+        [Authorize]
         public async Task<ActionResult> Post(Cliente cliente)
         {
             _context.Clientes.Add(cliente);
@@ -54,6 +59,7 @@ namespace LojaApi.Controllers
 
         
         [HttpPut("Upodate_Cliente")]
+        [Authorize]
         public async Task<ActionResult> Put(int id, Cliente cliente)
         {
             var clienteBanco = await _context.Clientes.FindAsync(id);
@@ -74,6 +80,7 @@ namespace LojaApi.Controllers
 
         
         [HttpDelete("Delete_ById")]
+        [Authorize]
         public async Task<ActionResult> Delete(int id)
         {
             var cliente = await _context.Clientes.FindAsync(id);

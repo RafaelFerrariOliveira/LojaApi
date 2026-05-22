@@ -2,11 +2,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using LojaApi.Data;
 using LojaApi.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LojaApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class ProdutoController : ControllerBase
     {
         private readonly AppDbContext _context;
@@ -17,12 +19,14 @@ namespace LojaApi.Controllers
         }
 
         [HttpGet("Get_AllProdutos")]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<Produto>>> Get()
         {
             return await _context.Produtos.ToListAsync();
         }
 
         [HttpGet("Get_ProdutosById")]
+        [Authorize]
         public async Task<ActionResult<Produto>> GetById(int codigo)
         {
             var produto = await _context.Produtos.FindAsync(codigo);
@@ -36,6 +40,7 @@ namespace LojaApi.Controllers
         }
 
         [HttpPost("Create_Produto")]
+        [Authorize]
         public async Task<ActionResult> Post(Produto produto)
         {
             _context.Produtos.Add(produto);
@@ -50,6 +55,7 @@ namespace LojaApi.Controllers
         }
 
         [HttpPut("Update_Produto")]
+        [Authorize]
         public async Task<ActionResult> Put(int codigo, Produto produto)
         {
             var produtoBanco = await _context.Produtos.FindAsync(codigo);
@@ -69,6 +75,7 @@ namespace LojaApi.Controllers
         }
 
         [HttpDelete("Delete_Produto")]
+        [Authorize]
         public async Task<ActionResult> Delete(int codigo)
         {
             var produto = await _context.Produtos.FindAsync(codigo);

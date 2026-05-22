@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Rafael Ferrari\\BaltaIo\\LojaApi\\LojaApi.csproj": {}
+    "C:\\Users\\Rafael Ferrari\\LojaApi\\LojaApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Rafael Ferrari\\BaltaIo\\LojaApi\\LojaApi.csproj": {
+    "C:\\Users\\Rafael Ferrari\\LojaApi\\LojaApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Rafael Ferrari\\BaltaIo\\LojaApi\\LojaApi.csproj",
+        "projectUniqueName": "C:\\Users\\Rafael Ferrari\\LojaApi\\LojaApi.csproj",
         "projectName": "LojaApi",
-        "projectPath": "C:\\Users\\Rafael Ferrari\\BaltaIo\\LojaApi\\LojaApi.csproj",
+        "projectPath": "C:\\Users\\Rafael Ferrari\\LojaApi\\LojaApi.csproj",
         "packagesPath": "C:\\Users\\Rafael Ferrari\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Rafael Ferrari\\BaltaIo\\LojaApi\\obj\\",
+        "outputPath": "C:\\Users\\Rafael Ferrari\\LojaApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -51,6 +51,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[8.0.8, )"
