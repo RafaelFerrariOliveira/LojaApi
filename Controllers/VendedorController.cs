@@ -2,11 +2,13 @@ using LojaApi.Data;
 using LojaApi.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LojaApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class VendedorController : ControllerBase
     {
         private readonly AppDbContext _context;
@@ -18,6 +20,7 @@ namespace LojaApi.Controllers
 
 
         [HttpGet("Get_Allvendedores")]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<Vendedor>>> Get()
         {
             return await _context.Vendedores.ToListAsync();
@@ -25,6 +28,7 @@ namespace LojaApi.Controllers
 
 
         [HttpGet("Get_ById")]
+        [Authorize]
         public async Task<ActionResult<Vendedor>> GetById(int codigo)
         {
             var vendedor = await _context.Vendedores.FindAsync(codigo);
@@ -39,6 +43,7 @@ namespace LojaApi.Controllers
 
 
         [HttpPost("Create_Vendedor")]
+        [Authorize]
         public async Task<ActionResult> Post(Vendedor vendedor)
         {
             _context.Vendedores.Add(vendedor);
@@ -54,6 +59,7 @@ namespace LojaApi.Controllers
 
 
         [HttpPut("Update_Vendedor")]
+        [Authorize]
         public async Task<ActionResult> Put(int codigo, Vendedor vendedor)
         {
             var vendedorBanco = await _context.Vendedores.FindAsync(codigo);
@@ -74,6 +80,7 @@ namespace LojaApi.Controllers
         }
 
         [HttpGet("Get_BySalario")]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<Vendedor>>> BuscarPorSalario(decimal valor)
         {
             var vendedores = await _context.Vendedores
@@ -90,6 +97,7 @@ namespace LojaApi.Controllers
 
 
         [HttpDelete("Delete_Vendedor")]
+        [Authorize]
         public async Task<ActionResult> Delete(int codigo)
         {
             var vendedor = await _context.Vendedores.FindAsync(codigo);
