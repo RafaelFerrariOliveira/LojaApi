@@ -1,5 +1,6 @@
 using LojaApi.Data;
 using LojaApi.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,6 +8,7 @@ namespace LojaApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class FornecedorController : ControllerBase
     {
         private readonly AppDbContext _context;
@@ -18,6 +20,7 @@ namespace LojaApi.Controllers
 
 
         [HttpGet("Get_All")]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<Fornecedor>>> Get()
         {
             return await _context.Fornecedores.ToListAsync();
@@ -25,6 +28,7 @@ namespace LojaApi.Controllers
 
 
         [HttpGet("Get_FornecedorById")]
+        [Authorize]
         public async Task<ActionResult<Fornecedor>> GetById(int codigo)
         {
             var fornecedor = await _context.Fornecedores.FindAsync(codigo);
@@ -39,6 +43,7 @@ namespace LojaApi.Controllers
 
 
         [HttpPost("Create_Forncedor")]
+        [Authorize]
         public async Task<ActionResult> Post(Fornecedor fornecedor)
         {
             _context.Fornecedores.Add(fornecedor);
@@ -54,6 +59,7 @@ namespace LojaApi.Controllers
 
 
         [HttpPut("Update_Fornecedor")]
+        [Authorize]
         public async Task<ActionResult> Put(int codigo, Fornecedor fornecedor)
         {
             var fornecedorBanco = await _context.Fornecedores.FindAsync(codigo);
@@ -74,6 +80,7 @@ namespace LojaApi.Controllers
         }
 
         [HttpGet("Get_ByName")]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<Fornecedor>>> BuscarPorNome(string nome)
         {
             var fornecedores = await _context.Fornecedores
@@ -90,6 +97,7 @@ namespace LojaApi.Controllers
 
 
         [HttpDelete("Delete_ById")]
+        [Authorize]
         public async Task<ActionResult> Delete(int codigo)
         {
             var fornecedor = await _context.Fornecedores.FindAsync(codigo);
