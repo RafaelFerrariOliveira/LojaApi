@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using LojaApi.Models;
 using LojaApi.Data;
 using LojaApi.Maps;
+using SalasReuniaoApi.Models;
 
 namespace LojaApi.Data
 {
@@ -14,6 +15,7 @@ namespace LojaApi.Data
         public DbSet<Fornecedor> Fornecedores { get; set; }
 
         public DbSet<Vendedor> Vendedores { get; set; }
+         public DbSet<SalaReuniao> SalasReuniao => Set<SalaReuniao>();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
